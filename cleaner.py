@@ -50,11 +50,14 @@ class DriveCleaner():
         return [x for x in self.noParents() if
                 len(x['owners']) == 1 and x['owners'][0]['isAuthenticatedUser']]
 
+    def isArqBackupFile(self):
+        return [x for x in self.files if len(x['title']) == 40 and not ' ' in x['title']]
+
     def trashItems(self, reload_files=False):
         if len(self.files) == 0 or reload_files:
             self.updateFiles()
         # find items with no parents owned by me
-        for item in self.noParents:
+        for item in self.isArqBackupFile():
             # ... check to see if already trashed
             if item['labels'] and item['labels']['trashed']:
                 # print '\tAlready in trash: ' + item['title'] + ' - ' + item['id']
@@ -85,7 +88,7 @@ class DriveCleaner():
         if len(self.files) == 0 or reload_files:
             self.updateFiles()
         # find items with no parents owned by me
-        for item in self.noParentsMine():
+        for item in self.isArqBackupFile():
             # ... check to see if already trashed
             if item['labels'] and item['labels']['trashed']:
                 # print '\tAlready in trash: ' + item['title'] + ' - ' + item['id']

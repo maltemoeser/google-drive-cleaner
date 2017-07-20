@@ -1,6 +1,8 @@
 google-drive-cleaner
 ====================
 
+*Modified to remove Arq backup files.*
+
 Google Drive is an excellent way to share files with colleagues and friends.  However, it makes some unconventional assumptions about the organization of files and folders.  As a result of these assumptions (and sequences of events like the ones documented [here](https://support.google.com/a/answer/6008339?hl=en), some users will find that they have "orphaned" files.  These files are included in "All Files" but not visible in any other folder on My Drive.  They continue to consume quota and the "all files" technique is impractical for large numbers of files.  
 
 This Python package addresses the orphaned files problem by scanning through Google Drive and find orphaned files.   Once identified, they can be moved into a folder for manual review (recommended) or directly into the trash. 
